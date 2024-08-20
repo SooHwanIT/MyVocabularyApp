@@ -1,0 +1,482 @@
+[
+  {
+    "id": 1,
+    "word_original": "abandon",
+    "word_korean": "버리다",
+    "importance": 5,
+    "example_sentence": "They were forced to abandon the project due to financial constraints.",
+    "example_sentence_korean": "그들은 재정적 제약으로 인해 프로젝트를 포기할 수밖에 없었다."
+  },
+  {
+    "id": 2,
+    "word_original": "abide",
+    "word_korean": "따르다",
+    "importance": 4,
+    "example_sentence": "He will abide by the court's decision.",
+    "example_sentence_korean": "그는 법원의 결정을 따를 것이다."
+  },
+  {
+    "id": 3,
+    "word_original": "abstract",
+    "word_korean": "추상적인",
+    "importance": 3,
+    "example_sentence": "The concept of beauty can be quite abstract.",
+    "example_sentence_korean": "미의 개념은 꽤 추상적일 수 있다."
+  },
+  {
+    "id": 4,
+    "word_original": "benevolent",
+    "word_korean": "자비로운",
+    "importance": 5,
+    "example_sentence": "The benevolent king was loved by all his subjects.",
+    "example_sentence_korean": "자비로운 왕은 모든 신하들에게 사랑받았다."
+  },
+  {
+    "id": 5,
+    "word_original": "candid",
+    "word_korean": "솔직한",
+    "importance": 4,
+    "example_sentence": "She gave a candid response during the interview.",
+    "example_sentence_korean": "그녀는 인터뷰 중에 솔직한 답변을 했다."
+  },
+  {
+    "id": 6,
+    "word_original": "contemplate",
+    "word_korean": "숙고하다",
+    "importance": 4,
+    "example_sentence": "He contemplated the meaning of the poem for hours.",
+    "example_sentence_korean": "그는 시의 의미를 몇 시간 동안 숙고했다."
+  },
+  {
+    "id": 7,
+    "word_original": "diligent",
+    "word_korean": "성실한",
+    "importance": 5,
+    "example_sentence": "She is a diligent student, always finishing her work on time.",
+    "example_sentence_korean": "그녀는 성실한 학생으로, 항상 제때에 일을 끝낸다."
+  },
+  {
+    "id": 8,
+    "word_original": "eloquent",
+    "word_korean": "웅변의",
+    "importance": 3,
+    "example_sentence": "The speaker gave an eloquent speech that moved the audience.",
+    "example_sentence_korean": "연설자는 청중을 감동시키는 웅변적인 연설을 했다."
+  },
+  {
+    "id": 9,
+    "word_original": "fortitude",
+    "word_korean": "불굴의 용기",
+    "importance": 4,
+    "example_sentence": "He showed great fortitude in facing the challenges of life.",
+    "example_sentence_korean": "그는 인생의 도전에 맞서 불굴의 용기를 보였다."
+  },
+  {
+    "id": 10,
+    "word_original": "gregarious",
+    "word_korean": "사교적인",
+    "importance": 4,
+    "example_sentence": "She is known for her gregarious nature and loves to be around people.",
+    "example_sentence_korean": "그녀는 사교적인 성격으로 잘 알려져 있으며, 사람들과 함께 있는 것을 좋아한다."
+  },
+  {
+    "id": 11,
+    "word_original": "harbinger",
+    "word_korean": "징후",
+    "importance": 4,
+    "example_sentence": "The dark clouds were a harbinger of the storm to come.",
+    "example_sentence_korean": "어두운 구름은 다가오는 폭풍의 징후였다."
+  },
+  {
+    "id": 12,
+    "word_original": "impeccable",
+    "word_korean": "결점 없는",
+    "importance": 4,
+    "example_sentence": "Her performance was impeccable, earning her a standing ovation.",
+    "example_sentence_korean": "그녀의 공연은 결점이 없어서 관객들의 기립 박수를 받았다."
+  },
+  {
+    "id": 13,
+    "word_original": "juxtapose",
+    "word_korean": "나란히 놓다",
+    "importance": 3,
+    "example_sentence": "The artist juxtaposed bright colors with dark shades to create contrast.",
+    "example_sentence_korean": "그 예술가는 밝은 색과 어두운 색을 나란히 놓아 대비를 만들었다."
+  },
+  {
+    "id": 14,
+    "word_original": "kinetic",
+    "word_korean": "운동의",
+    "importance": 3,
+    "example_sentence": "The kinetic sculpture moved with the wind.",
+    "example_sentence_korean": "운동 조각상은 바람에 따라 움직였다."
+  },
+  {
+    "id": 15,
+    "word_original": "luminous",
+    "word_korean": "빛나는",
+    "importance": 4,
+    "example_sentence": "The luminous stars lit up the night sky.",
+    "example_sentence_korean": "빛나는 별들이 밤하늘을 밝게 했다."
+  },
+  {
+    "id": 16,
+    "word_original": "meticulous",
+    "word_korean": "꼼꼼한",
+    "importance": 4,
+    "example_sentence": "He is known for his meticulous attention to detail.",
+    "example_sentence_korean": "그는 세부 사항에 대한 꼼꼼한 주의로 잘 알려져 있다."
+  },
+  {
+    "id": 17,
+    "word_original": "negligent",
+    "word_korean": "태만한",
+    "importance": 3,
+    "example_sentence": "The company's negligent maintenance led to the accident.",
+    "example_sentence_korean": "회사의 태만한 유지보수로 사고가 발생했다."
+  },
+  {
+    "id": 18,
+    "word_original": "obsolete",
+    "word_korean": "구식의",
+    "importance": 4,
+    "example_sentence": "Many old technologies have become obsolete.",
+    "example_sentence_korean": "많은 오래된 기술들이 구식이 되었다."
+  },
+  {
+    "id": 19,
+    "word_original": "pragmatic",
+    "word_korean": "실용적인",
+    "importance": 4,
+    "example_sentence": "She took a pragmatic approach to solving the problem.",
+    "example_sentence_korean": "그녀는 문제를 해결하기 위해 실용적인 접근 방식을 취했다."
+  },
+  {
+    "id": 20,
+    "word_original": "resilient",
+    "word_korean": "회복력 있는",
+    "importance": 4,
+    "example_sentence": "The community showed a resilient spirit in the face of adversity.",
+    "example_sentence_korean": "그 커뮤니티는 역경에 직면했을 때 회복력 있는 정신을 보였다."
+  },
+  {
+    "id": 21,
+    "word_original": "serendipity",
+    "word_korean": "뜻밖의 발견",
+    "importance": 4,
+    "example_sentence": "Their meeting was pure serendipity, an unexpected but fortunate event.",
+    "example_sentence_korean": "그들의 만남은 순전히 뜻밖의 발견으로, 예상치 못했지만 운 좋은 사건이었다."
+  },
+  {
+    "id": 22,
+    "word_original": "tenacious",
+    "word_korean": "끈질긴",
+    "importance": 4,
+    "example_sentence": "She remained tenacious, refusing to give up despite the challenges.",
+    "example_sentence_korean": "그녀는 도전에도 불구하고 포기하지 않고 끈질기게 버텼다."
+  },
+  {
+    "id": 23,
+    "word_original": "ubiquitous",
+    "word_korean": "어디에나 있는",
+    "importance": 4,
+    "example_sentence": "Smartphones have become ubiquitous in modern society.",
+    "example_sentence_korean": "스마트폰은 현대 사회에서 어디에나 존재하게 되었다."
+  },
+  {
+    "id": 24,
+    "word_original": "venerate",
+    "word_korean": "존경하다",
+    "importance": 4,
+    "example_sentence": "The community venerates its elders and their wisdom.",
+    "example_sentence_korean": "그 커뮤니티는 노인들과 그들의 지혜를 존경한다."
+  },
+  {
+    "id": 25,
+    "word_original": "wary",
+    "word_korean": "조심하는",
+    "importance": 3,
+    "example_sentence": "He was wary of making any sudden moves.",
+    "example_sentence_korean": "그는 갑작스러운 움직임을 조심했다."
+  },
+  {
+    "id": 26,
+    "word_original": "zealous",
+    "word_korean": "열성적인",
+    "importance": 4,
+    "example_sentence": "The zealous fan followed the band on tour.",
+    "example_sentence_korean": "열성적인 팬은 밴드를 따라 투어를 다녔다."
+  },
+  {
+    "id": 27,
+    "word_original": "altruistic",
+    "word_korean": "이타적인",
+    "importance": 4,
+    "example_sentence": "Her altruistic nature led her to volunteer at the shelter.",
+    "example_sentence_korean": "그녀의 이타적인 성격은 그녀를 보호소에서 자원봉사하게 만들었다."
+  },
+  {
+    "id": 28,
+    "word_original": "boisterous",
+    "word_korean": "떠들썩한",
+    "importance": 4,
+    "example_sentence": "The boisterous crowd cheered loudly for their team.",
+    "example_sentence_korean": "떠들썩한 군중은 그들의 팀을 위해 크게 응원했다."
+  },
+  {
+    "id": 29,
+    "word_original": "circumvent",
+    "word_korean": "피하다",
+    "importance": 3,
+    "example_sentence": "He tried to circumvent the problem by taking a different route.",
+    "example_sentence_korean": "그는 다른 경로를 택해 문제를 피하려고 했다."
+  },
+  {
+    "id": 30,
+    "word_original": "dubious",
+    "word_korean": "의심스러운",
+    "importance": 3,
+    "example_sentence": "The company's dubious practices raised many concerns.",
+    "example_sentence_korean": "그 회사의 의심스러운 관행은 많은 우려를 낳았다."
+  },
+  {
+    "id": 31,
+    "word_original": "empathy",
+    "word_korean": "공감",
+    "importance": 5,
+    "example_sentence": "Her empathy made her an excellent counselor.",
+    "example_sentence_korean": "그녀의 공감 능력은 그녀를 훌륭한 상담자로 만들었다."
+  },
+  {
+    "id": 32,
+    "word_original": "frivolous",
+    "word_korean": "하찮은",
+    "importance": 3,
+    "example_sentence": "He was criticized for making frivolous comments during the meeting.",
+    "example_sentence_korean": "그는 회의 중에 하찮은 발언을 했다는 이유로 비판을 받았다."
+  },
+  {
+    "id": 33,
+    "word_original": "gullible",
+    "word_korean": "잘 속는",
+    "importance": 3,
+    "example_sentence": "He was so gullible that he believed every story he heard.",
+    "example_sentence_korean": "그는 너무 잘 속아서 들은 이야기를 다 믿었다."
+  },
+  {
+    "id": 34,
+    "word_original": "hinder",
+    "word_korean": "방해하다",
+    "importance": 4,
+    "example_sentence": "His lack of experience may hinder his progress.",
+    "example_sentence_korean": "그의 경험 부족은 그의 발전을 방해할 수 있다."
+  },
+  {
+    "id": 35,
+    "word_original": "indigenous",
+    "word_korean": "토착의",
+    "importance": 4,
+    "example_sentence": "The indigenous people have a deep connection to the land.",
+    "example_sentence_korean": "토착민들은 땅과 깊은 연결을 가지고 있다."
+  },
+  {
+    "id": 36,
+    "word_original": "jovial",
+    "word_korean": "쾌활한",
+    "importance": 4,
+    "example_sentence": "His jovial personality made him very popular at parties.",
+    "example_sentence_korean": "그의 쾌활한 성격은 그를 파티에서 매우 인기가 있게 만들었다."
+  },
+  {
+    "id": 37,
+    "word_original": "knack",
+    "word_korean": "요령",
+    "importance": 3,
+    "example_sentence": "She has a knack for making people feel at ease.",
+    "example_sentence_korean": "그녀는 사람들을 편안하게 만드는 요령이 있다."
+  },
+  {
+    "id": 38,
+    "word_original": "lucid",
+    "word_korean": "명쾌한",
+    "importance": 4,
+    "example_sentence": "Her explanation was so lucid that everyone understood.",
+    "example_sentence_korean": "그녀의 설명은 매우 명쾌해서 모두가 이해했다."
+  },
+  {
+    "id": 39,
+    "word_original": "morose",
+    "word_korean": "시무룩한",
+    "importance": 4,
+    "example_sentence": "He became morose after hearing the bad news.",
+    "example_sentence_korean": "그는 나쁜 소식을 듣고 시무룩해졌다."
+  },
+  {
+    "id": 40,
+    "word_original": "nostalgic",
+    "word_korean": "향수를 불러일으키는",
+    "importance": 4,
+    "example_sentence": "The old photographs made her feel nostalgic.",
+    "example_sentence_korean": "옛 사진들은 그녀에게 향수를 불러일으켰다."
+  },
+  {
+    "id": 41,
+    "word_original": "opulent",
+    "word_korean": "부유한",
+    "importance": 3,
+    "example_sentence": "The opulent mansion was filled with luxurious furnishings.",
+    "example_sentence_korean": "그 호화로운 저택은 고급 가구들로 가득 차 있었다."
+  },
+  {
+    "id": 42,
+    "word_original": "perplex",
+    "word_korean": "당황하게 하다",
+    "importance": 4,
+    "example_sentence": "The complex instructions perplexed the students.",
+    "example_sentence_korean": "복잡한 지시사항이 학생들을 당황하게 했다."
+  },
+  {
+    "id": 43,
+    "word_original": "quaint",
+    "word_korean": "독특한",
+    "importance": 3,
+    "example_sentence": "The quaint village was known for its charming architecture.",
+    "example_sentence_korean": "그 독특한 마을은 매력적인 건축물로 유명했다."
+  },
+  {
+    "id": 44,
+    "word_original": "reticent",
+    "word_korean": "말을 잘 안 하는",
+    "importance": 4,
+    "example_sentence": "He was reticent about his personal life, rarely sharing details.",
+    "example_sentence_korean": "그는 자신의 사생활에 대해 말을 잘 하지 않아서, 거의 세부 사항을 공유하지 않았다."
+  },
+  {
+    "id": 45,
+    "word_original": "stoic",
+    "word_korean": "금욕적인",
+    "importance": 3,
+    "example_sentence": "He remained stoic even in the face of great adversity.",
+    "example_sentence_korean": "그는 큰 역경 앞에서도 금욕적인 태도를 유지했다."
+  },
+  {
+    "id": 46,
+    "word_original": "tangible",
+    "word_korean": "실질적인",
+    "importance": 4,
+    "example_sentence": "The evidence provided a tangible link to the crime.",
+    "example_sentence_korean": "제공된 증거는 범죄와의 실질적인 연관성을 보여주었다."
+  },
+  {
+    "id": 47,
+    "word_original": "unwavering",
+    "word_korean": "변함없는",
+    "importance": 4,
+    "example_sentence": "She had an unwavering belief in justice.",
+    "example_sentence_korean": "그녀는 정의에 대한 변함없는 믿음을 가지고 있었다."
+  },
+  {
+    "id": 48,
+    "word_original": "vindicate",
+    "word_korean": "정당성을 입증하다",
+    "importance": 4,
+    "example_sentence": "The new evidence vindicated his claims.",
+    "example_sentence_korean": "새로운 증거는 그의 주장의 정당성을 입증했다."
+  },
+  {
+    "id": 49,
+    "word_original": "wistful",
+    "word_korean": "아쉬워하는",
+    "importance": 3,
+    "example_sentence": "She looked at the old photograph with a wistful smile.",
+    "example_sentence_korean": "그녀는 아쉬운 미소로 옛 사진을 바라보았다."
+  },
+  {
+    "id": 50,
+    "word_original": "xenophobia",
+    "word_korean": "외국인 혐오",
+    "importance": 4,
+    "example_sentence": "The rise in xenophobia was a troubling sign.",
+    "example_sentence_korean": "외국인 혐오의 증가는 우려스러운 신호였다."
+  },
+  {
+    "id": 51,
+    "word_original": "yearn",
+    "word_korean": "갈망하다",
+    "importance": 4,
+    "example_sentence": "He yearned for the days of his youth.",
+    "example_sentence_korean": "그는 젊은 시절을 갈망했다."
+  },
+  {
+    "id": 52,
+    "word_original": "zenith",
+    "word_korean": "정점",
+    "importance": 4,
+    "example_sentence": "The company reached its zenith in the early 2000s.",
+    "example_sentence_korean": "그 회사는 2000년대 초반에 정점에 도달했다."
+  },
+  {
+    "id": 53,
+    "word_original": "auspicious",
+    "word_korean": "길조의",
+    "importance": 4,
+    "example_sentence": "The sunny weather was an auspicious start to the wedding day.",
+    "example_sentence_korean": "맑은 날씨는 결혼식 날의 길조로운 시작이었다."
+  },
+  {
+    "id": 54,
+    "word_original": "belligerent",
+    "word_korean": "호전적인",
+    "importance": 4,
+    "example_sentence": "His belligerent attitude made him many enemies.",
+    "example_sentence_korean": "그의 호전적인 태도는 그에게 많은 적을 만들었다."
+  },
+  {
+    "id": 55,
+    "word_original": "complacent",
+    "word_korean": "자기만족적인",
+    "importance": 4,
+    "example_sentence": "He became complacent after years of success.",
+    "example_sentence_korean": "그는 몇 년간의 성공 후 자기만족에 빠졌다."
+  },
+  {
+    "id": 56,
+    "word_original": "debilitate",
+    "word_korean": "약화시키다",
+    "importance": 4,
+    "example_sentence": "The illness debilitated him for weeks.",
+    "example_sentence_korean": "그 병은 그를 몇 주 동안 약화시켰다."
+  },
+  {
+    "id": 57,
+    "word_original": "exuberant",
+    "word_korean": "활기찬",
+    "importance": 4,
+    "example_sentence": "The children were exuberant after their day at the park.",
+    "example_sentence_korean": "아이들은 공원에서의 하루를 보낸 후 활기찼다."
+  },
+  {
+    "id": 58,
+    "word_original": "formidable",
+    "word_korean": "어마어마한",
+    "importance": 4,
+    "example_sentence": "The team faced a formidable opponent in the finals.",
+    "example_sentence_korean": "팀은 결승전에서 어마어마한 상대와 맞섰다."
+  },
+  {
+    "id": 59,
+    "word_original": "gregarious",
+    "word_korean": "사교적인",
+    "importance": 4,
+    "example_sentence": "She is known for her gregarious nature and loves to be around people.",
+    "example_sentence_korean": "그녀는 사교적인 성격으로 잘 알려져 있으며, 사람들과 함께 있는 것을 좋아한다."
+  },
+  {
+    "id": 60,
+    "word_original": "hierarchy",
+    "word_korean": "계급",
+    "importance": 4,
+    "example_sentence": "The corporate hierarchy was strict and difficult to navigate.",
+    "example_sentence_korean": "그 기업의 계급 구조는 엄격하고 파악하기 어려웠다."
+  }
+]
