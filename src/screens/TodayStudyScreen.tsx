@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import wordData from '../data/words.json'; // Word data file
-import { getUserWordData, updateOrAddUserWordData, initDb } from '../services/db'; // SQLite DB API
-import { getNextWord } from '../utils/getNextWord'; // 유틸 파일에서 함수 임포트
+import { getUserWordData, updateOrAddUserWordData, initDb, getNextWord } from '../services/db'; // SQLite DB API
 import { timeSinceLastStudy } from '../utils/timeSinceLastStudy'; // 유틸 파일에서 함수 임포트
 
 const TodayStudyScreen = () => {
@@ -11,7 +10,7 @@ const TodayStudyScreen = () => {
     const [userAnswer, setUserAnswer] = useState('');
     const [isCorrect, setIsCorrect] = useState(null);
     const [buttonText, setButtonText] = useState('제출');
-    const [showSkip, setShowSkip] = useState(true); // Skip 버튼 표시 여부
+    const [showSkip, setShowSkip] = useState(true);
     const inputRef = useRef(null);
 
     useEffect(() => {
@@ -20,8 +19,10 @@ const TodayStudyScreen = () => {
         const fetchUserData = () => {
             getUserWordData(1, (data) => {
                 setUserData(data);
-                const word = getNextWord(wordData, data);
-                setCurrentWord(word);
+                getNextWord(1, (word) => {
+                    console.log("Received word: ", word); // 디버깅용 로그 추가
+                    setCurrentWord(word);
+                });
             });
         };
 
@@ -29,6 +30,10 @@ const TodayStudyScreen = () => {
     }, []);
 
     useEffect(() => {
+        if (currentWord) {
+            console.log("Current word is set: ", currentWord);
+        }
+
         if (inputRef.current) {
             inputRef.current.focus();
         }
@@ -41,25 +46,26 @@ const TodayStudyScreen = () => {
             const correct = userAnswer.trim().toLowerCase() === currentWord.word_original.toLowerCase();
             setIsCorrect(correct);
             setButtonText('다음으로');
-            setShowSkip(false); // 스킵 버튼 숨기기
+            setShowSkip(false);
             updateOrAddUserWordData(1, currentWord.id, correct);
         } else {
-            const nextWord = getNextWord(wordData, userData);
-            setCurrentWord(nextWord);
-            setUserAnswer('');
-            setIsCorrect(null);
-            setButtonText('제출');
-            setShowSkip(true); // 스킵 버튼 다시 보이기
+            getNextWord(1, (nextWord) => {
+                setCurrentWord(nextWord);
+                setUserAnswer('');
+                setIsCorrect(null);
+                setButtonText('제출');
+                setShowSkip(true);
+            });
         }
     };
 
     const handleSkip = () => {
         if (!currentWord) return;
 
-        updateOrAddUserWordData(1, currentWord.id, false, true); // 스킵 기록 추가
-        setIsCorrect(false); // 스킵한 경우 틀린 것으로 처리
+        updateOrAddUserWordData(1, currentWord.id, false, true);
+        setIsCorrect(false);
         setButtonText('다음으로');
-        setShowSkip(false); // 스킵 버튼 숨기기
+        setShowSkip(false);
     };
 
     if (!currentWord) {
@@ -76,16 +82,12 @@ const TodayStudyScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            {/*<Text style={styles.title}>단어 퀴즈</Text>*/}
-
             <View style={styles.card}>
-                {/* 카드 상단에 단어 뜻과 마지막 학습 기한 표시 */}
                 <View style={styles.cardHeader}>
                     <Text style={styles.word}>{currentWord.word_korean}</Text>
                     <Text style={styles.lastStudy}>마지막 학습: {lastStudyText}</Text>
                 </View>
 
-                {/* 예문과 빈칸 입력 표시 */}
                 <TouchableOpacity onPress={() => inputRef.current.focus()} activeOpacity={1}>
                     <View style={styles.sentenceContainer}>
                         <Text style={styles.sentence}>
@@ -147,12 +149,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#F1F3F4',
     },
     title: {
-        fontSize: 34, // 더 크게 조정
-        fontWeight: 'bold', // 더 두껍게 조정
+        fontSize: 34,
+        fontWeight: 'bold',
         marginBottom: 10,
         textAlign: 'center',
         color: '#1A73E8',
-        marginTop: 0, // 화면 상단과 붙게 조정
+        marginTop: 0,
     },
     card: {
         backgroundColor: '#FFFFFF',
@@ -169,14 +171,13 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         paddingBottom: 12,
         alignItems: 'flex-start',
-        borderBottomWidth:1,
-
+        borderBottomWidth: 1,
     },
     word: {
         fontSize: 24,
         fontWeight: 'bold',
         color: '#1A73E8',
-        marginBottom:4,
+        marginBottom: 4,
     },
     lastStudy: {
         fontSize: 16,
@@ -243,11 +244,9 @@ const styles = StyleSheet.create({
     skipButton: {
         backgroundColor: '#FF7043',
         paddingVertical: 12,
-        // paddingHorizontal: 4,
         borderRadius: 12,
         alignItems: 'center',
         flex: 0.6,
-        // marginRight: 4,
     },
     buttonText: {
         color: '#FFFFFF',
