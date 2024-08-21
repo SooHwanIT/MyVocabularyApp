@@ -22,7 +22,6 @@ const initDb = () => {
                 study_count INTEGER,
                 last_study_date DATETIME, 
                 favorite INTEGER,
-                review_interval TEXT,
                 exposure_count INTEGER,
                 skip_count INTEGER,
                 last_attempt_status TEXT

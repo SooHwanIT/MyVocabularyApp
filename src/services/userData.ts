@@ -6,8 +6,8 @@ const addUserWordData = (userWord) => {
     db.transaction(tx => {
         tx.executeSql(
             `INSERT INTO user_words 
-            (word_id, user_id, wrong_count, correct_count, study_count, last_study_date, favorite, review_interval, exposure_count, skip_count, last_attempt_status)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            (word_id, user_id, wrong_count, correct_count, study_count, last_study_date, favorite, exposure_count, skip_count, last_attempt_status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
                 userWord.word_id,
                 userWord.user_id,
@@ -16,7 +16,6 @@ const addUserWordData = (userWord) => {
                 userWord.study_count,
                 userWord.last_study_date,
                 userWord.favorite ? 1 : 0,
-                userWord.review_interval,
                 userWord.exposure_count,
                 userWord.skip_count,
                 userWord.last_attempt_status
@@ -40,14 +39,13 @@ const updateOrAddUserWordData = (userId, wordId, correct, newWordData) => {
                     const updatedCorrectCount = correct ? userWord.correct_count + 1 : userWord.correct_count;
                     const updatedWrongCount = correct ? userWord.wrong_count : userWord.wrong_count + 1;
                     const updatedFavorite = newWordData.favorite !== undefined ? newWordData.favorite : userWord.favorite;
-                    const updatedReviewInterval = newWordData.review_interval || userWord.review_interval;
                     const updatedExposureCount = updatedStudyCount;
                     const updatedSkipCount = newWordData.skip_count !== undefined ? newWordData.skip_count : userWord.skip_count;
                     const lastAttemptStatus = correct ? 'correct' : (newWordData.skip ? 'skipped' : 'incorrect');
 
                     tx.executeSql(
                         `UPDATE user_words 
-                        SET study_count = ?, correct_count = ?, wrong_count = ?, last_study_date = ?, favorite = ?, review_interval = ?, exposure_count = ?, skip_count = ?, last_attempt_status = ?
+                        SET study_count = ?, correct_count = ?, wrong_count = ?, last_study_date = ?, favorite = ?, exposure_count = ?, skip_count = ?, last_attempt_status = ?
                         WHERE user_id = ? AND word_id = ?`,
                         [
                             updatedStudyCount,
@@ -74,7 +72,6 @@ const updateOrAddUserWordData = (userId, wordId, correct, newWordData) => {
                         study_count: 1,
                         last_study_date: currentDateTime,  // 현재 시간으로 초기화
                         favorite: newWordData.favorite ? 1 : 0,
-                        review_interval: newWordData.review_interval || "7 days",
                         exposure_count: 1,
                         skip_count: newWordData.skip ? 1 : 0,
                         last_attempt_status: correct ? 'correct' : (newWordData.skip ? 'skipped' : 'incorrect')
@@ -117,4 +114,22 @@ const getAllData = (callback) => {
     });
 };
 
-export { addUserWordData, updateOrAddUserWordData, getUserWordData, getAllData };
+const getLastStudyTime = (wordId, callback) => {
+    db.transaction(tx => {
+        tx.executeSql(
+            'SELECT last_study_date FROM user_words WHERE word_id = ?',
+            [wordId],
+            (tx, results) => {
+                if (results.rows.length > 0) {
+                    const lastStudyDate = results.rows.item(0).last_study_date;
+                    callback(lastStudyDate);
+                } else {
+                    callback(null);
+                }
+            },
+            error => { console.log('Error fetching last study date', error); }
+        );
+    });
+};
+
+export { addUserWordData, updateOrAddUserWordData, getUserWordData, getAllData, getLastStudyTime };

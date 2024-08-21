@@ -20,7 +20,7 @@ const WordSetScreen = ({ navigation }) => {
                 <View key={index} style={styles.buttonContainer}>
                     <Button
                         title={`단어 ${index * 20 + 1} - ${index * 20 + wordGroup.length}`}
-                        onPress={() => navigation.navigate('WordList', { title: `단어 ${index * 20 + 1} - ${index * 20 + wordGroup.length}`, words: wordGroup })}
+                        onPress={() => navigation.navigate('WordListStack', { title: `단어 ${index * 20 + 1} - ${index * 20 + wordGroup.length}`, words: wordGroup })}
                         color="#1A73E8"
                     />
                 </View>

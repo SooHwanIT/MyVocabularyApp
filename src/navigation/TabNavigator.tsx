@@ -18,12 +18,12 @@ function WordSetStack() {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name="WordSet"
+                name="WordSetStack"
                 component={WordSetScreen}
                 options={{ title: '단어 세트', headerStyle: { backgroundColor: '#1A73E8' }, headerTintColor: '#FFFFFF' }}
             />
             <Stack.Screen
-                name="WordList"
+                name="WordListStack"
                 component={WordListScreen}
                 options={({ route }) => ({ title: route.params.title, headerStyle: { backgroundColor: '#1A73E8' }, headerTintColor: '#FFFFFF' })}
             />

@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import wordData from '../data/words.json'; // Word data file
-import { getUserWordData, updateOrAddUserWordData, initDb, getNextWord } from '../services'; // SQLite DB API
+import { getUserWordData, updateOrAddUserWordData, initDb, getNextWord, getLastStudyTime } from '../services'; // SQLite DB API
 import { timeSinceLastStudy } from '../utils/timeSinceLastStudy'; // 유틸 파일에서 함수 임포트
+
+
 
 const TodayStudyScreen = () => {
     const [currentWord, setCurrentWord] = useState(null);
-    const [userData, setUserData] = useState([]);
+    const [lastStudyTimeText, setLastStudyTimeText] = useState('');
     const [userAnswer, setUserAnswer] = useState('');
     const [isCorrect, setIsCorrect] = useState(null);
     const [buttonText, setButtonText] = useState('제출');
@@ -14,14 +16,20 @@ const TodayStudyScreen = () => {
     const inputRef = useRef(null);
 
     useEffect(() => {
+        // 데이터베이스 초기화
         initDb();
 
+        // 유저 데이터를 가져오는 함수
         const fetchUserData = () => {
             getUserWordData(1, (data) => {
-                setUserData(data);
+                // 데이터베이스에서 다음 단어를 가져오고 현재 단어를 설정
                 getNextWord(1, (word) => {
-                    console.log("Received word: ", word); // 디버깅용 로그 추가
                     setCurrentWord(word);
+
+                    // 현재 단어의 마지막 학습 시간 가져오기
+                    getLastStudyTime(word.id, (date) => {
+                        setLastStudyTimeText(date ? timeSinceLastStudy(date) : '처음');
+                    });
                 });
             });
         };
@@ -59,10 +67,14 @@ const TodayStudyScreen = () => {
                 setIsCorrect(null);
                 setButtonText('제출');
                 setShowSkip(true);
+
+                // 새 단어의 마지막 학습 시간 가져오기
+                getLastStudyTime(nextWord.id, (date) => {
+                    setLastStudyTimeText(date ? timeSinceLastStudy(date) : '처음');
+                });
             });
         }
     };
-
 
     const handleSkip = () => {
         if (!currentWord) return;
@@ -82,15 +94,13 @@ const TodayStudyScreen = () => {
     }
 
     const minInputWidth = Math.max(currentWord.word_original.length * 10, 40);
-    const lastStudyTime = userData.find(data => data.word_id === currentWord.id)?.last_study_date;
-    const lastStudyText = lastStudyTime ? timeSinceLastStudy(lastStudyTime) : '처음 학습';
 
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.card}>
                 <View style={styles.cardHeader}>
                     <Text style={styles.word}>{currentWord.word_korean}</Text>
-                    <Text style={styles.lastStudy}>마지막 학습: {lastStudyText}</Text>
+                    <Text style={styles.lastStudy}>{lastStudyTimeText} 학습 </Text>
                 </View>
 
                 <TouchableOpacity onPress={() => inputRef.current.focus()} activeOpacity={1}>
