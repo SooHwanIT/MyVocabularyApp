@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import wordData from '../data/words.json'; // Word data file
-import { getUserWordData, updateOrAddUserWordData, initDb, getNextWord } from '../services/db'; // SQLite DB API
+import { getUserWordData, updateOrAddUserWordData, initDb, getNextWord } from '../services'; // SQLite DB API
 import { timeSinceLastStudy } from '../utils/timeSinceLastStudy'; // 유틸 파일에서 함수 임포트
 
 const TodayStudyScreen = () => {
