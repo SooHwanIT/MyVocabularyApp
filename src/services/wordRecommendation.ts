@@ -2,8 +2,6 @@
 import { getUserWordData } from './userData';
 import words from '../data/words.json';
 
-const newWordWeight = 0.3;
-const reviewWordWeight = 0.7;
 
 const getNextNewWord = (userId, callback) => {
     getUserWordData(userId, (userWords) => {
@@ -54,39 +52,51 @@ const getReviewRecommendedWords = (userId, callback) => {
                     daysSinceLastStudy,
                 };
             })
-            .filter(word => word.daysSinceLastStudy >= parseInt(word.review_interval))
+            .filter(word => word.daysSinceLastStudy >= parseInt(word.review_interval))  // 임시로 필터링 비활성화
             .sort((a, b) => b.score - a.score);
 
         callback(recommendedReviewWords);
     });
 };
 
+
 const getNextWord = (userId, callback) => {
+    const newWordWeight = 0.3;
     const isNewWord = Math.random() < newWordWeight;
 
     if (isNewWord) {
+        console.log("새로운 단어를 시도합니다.");
         getNextNewWord(userId, (newWord) => {
             if (newWord) {
+                console.log("새로운 단어를 가져왔습니다:", newWord);
                 callback(newWord);
             } else {
+                console.log("새로운 단어가 없습니다. 복습 추천 단어를 가져옵니다.");
                 getReviewRecommendedWords(userId, (recommendedReviewWords) => {
                     if (recommendedReviewWords.length > 0) {
+                        console.log("복습 추천 단어를 가져왔습니다:", recommendedReviewWords[0]);
                         callback(recommendedReviewWords[0]);
                     } else {
+                        console.log("복습 추천 단어가 없습니다.");
                         callback(null);
                     }
                 });
             }
         });
     } else {
+        console.log("복습 추천 단어를 시도합니다.");
         getReviewRecommendedWords(userId, (recommendedReviewWords) => {
             if (recommendedReviewWords.length > 0){
+                console.log("복습 추천 단어를 가져왔습니다:", recommendedReviewWords[0]);
                 callback(recommendedReviewWords[0]);
             } else {
+                console.log("복습 추천 단어가 없습니다. 새로운 단어를 가져옵니다.");
                 getNextNewWord(userId, (newWord) => {
                     if (newWord) {
+                        console.log("새로운 단어를 가져왔습니다:", newWord);
                         callback(newWord);
                     } else {
+                        console.log("가져올 새로운 단어가 없습니다.");
                         callback(null);
                     }
                 });
@@ -94,5 +104,6 @@ const getNextWord = (userId, callback) => {
         });
     }
 };
+
 
 export { getNextNewWord, getReviewRecommendedWords, getNextWord };

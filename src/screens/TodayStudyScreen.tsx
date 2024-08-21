@@ -47,8 +47,12 @@ const TodayStudyScreen = () => {
             setIsCorrect(correct);
             setButtonText('다음으로');
             setShowSkip(false);
-            updateOrAddUserWordData(1, currentWord.id, correct);
+
+            // 업데이트 시 사용자가 정답을 맞췄는지 여부만 전달
+            updateOrAddUserWordData(1, currentWord.id, correct, {});
+
         } else {
+            // 다음 단어를 가져와 화면에 표시
             getNextWord(1, (nextWord) => {
                 setCurrentWord(nextWord);
                 setUserAnswer('');
@@ -58,6 +62,7 @@ const TodayStudyScreen = () => {
             });
         }
     };
+
 
     const handleSkip = () => {
         if (!currentWord) return;

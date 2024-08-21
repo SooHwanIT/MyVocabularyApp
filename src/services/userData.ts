@@ -2,6 +2,7 @@
 import { db } from './dbSetup';
 
 const addUserWordData = (userWord) => {
+    console.log('단어 추가');
     db.transaction(tx => {
         tx.executeSql(
             `INSERT INTO user_words 
@@ -27,6 +28,7 @@ const addUserWordData = (userWord) => {
 };
 
 const updateOrAddUserWordData = (userId, wordId, correct, newWordData) => {
+    const currentDateTime = new Date().toISOString().replace('T', ' ').split('.')[0];
     db.transaction(tx => {
         tx.executeSql(
             'SELECT * FROM user_words WHERE user_id = ? AND word_id = ?',
@@ -37,11 +39,10 @@ const updateOrAddUserWordData = (userId, wordId, correct, newWordData) => {
                     const updatedStudyCount = userWord.study_count + 1;
                     const updatedCorrectCount = correct ? userWord.correct_count + 1 : userWord.correct_count;
                     const updatedWrongCount = correct ? userWord.wrong_count : userWord.wrong_count + 1;
-                    const updatedLastStudyDate = new Date().toISOString().split('T')[0];
                     const updatedFavorite = newWordData.favorite !== undefined ? newWordData.favorite : userWord.favorite;
                     const updatedReviewInterval = newWordData.review_interval || userWord.review_interval;
                     const updatedExposureCount = updatedStudyCount;
-                    const updatedSkipCount = (newWordData.skip_count !== undefined) ? newWordData.skip_count : userWord.skip_count;
+                    const updatedSkipCount = newWordData.skip_count !== undefined ? newWordData.skip_count : userWord.skip_count;
                     const lastAttemptStatus = correct ? 'correct' : (newWordData.skip ? 'skipped' : 'incorrect');
 
                     tx.executeSql(
@@ -52,7 +53,7 @@ const updateOrAddUserWordData = (userId, wordId, correct, newWordData) => {
                             updatedStudyCount,
                             updatedCorrectCount,
                             updatedWrongCount,
-                            updatedLastStudyDate,
+                            currentDateTime,  // 현재 시간으로 업데이트
                             updatedFavorite ? 1 : 0,
                             updatedReviewInterval,
                             updatedExposureCount,
@@ -61,8 +62,8 @@ const updateOrAddUserWordData = (userId, wordId, correct, newWordData) => {
                             userId,
                             wordId
                         ],
-                        () => { console.log('Data updated successfully'); },
-                        error => { console.log('Error updating data', error); }
+                        () => { console.log('데이터 업데이트 성공'); },
+                        error => { console.log('데이터 업데이트 중 오류 발생', error); }
                     );
                 } else {
                     const newUserWord = {
@@ -71,7 +72,7 @@ const updateOrAddUserWordData = (userId, wordId, correct, newWordData) => {
                         wrong_count: correct ? 0 : 1,
                         correct_count: correct ? 1 : 0,
                         study_count: 1,
-                        last_study_date: new Date().toISOString().split('T')[0],
+                        last_study_date: currentDateTime,  // 현재 시간으로 초기화
                         favorite: newWordData.favorite ? 1 : 0,
                         review_interval: newWordData.review_interval || "7 days",
                         exposure_count: 1,
@@ -82,10 +83,11 @@ const updateOrAddUserWordData = (userId, wordId, correct, newWordData) => {
                     addUserWordData(newUserWord);
                 }
             },
-            error => { console.log('Error fetching data', error); }
+            error => { console.log('데이터 조회 중 오류 발생', error); }
         );
     });
 };
+
 
 const getUserWordData = (userId, callback) => {
     db.transaction(tx => {

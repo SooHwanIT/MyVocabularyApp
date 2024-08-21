@@ -1,16 +1,17 @@
-// services/dbSetup.js
 import SQLite from 'react-native-sqlite-storage';
 
 const db = SQLite.openDatabase({ name: 'wordStudy.db', location: 'default' });
 
 const initDb = () => {
     db.transaction(tx => {
+        // 기존 테이블 삭제
         tx.executeSql('DROP TABLE IF EXISTS user_words', [], () => {
-            console.log('Table dropped successfully');
+            console.log('기존 테이블 삭제 성공mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm');
         }, error => {
-            console.log('Error dropping table', error);
+            console.log('테이블 삭제 중 오류 발생mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm', error);
         });
 
+        // 새로운 테이블 생성
         tx.executeSql(
             `CREATE TABLE IF NOT EXISTS user_words (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -19,7 +20,7 @@ const initDb = () => {
                 wrong_count INTEGER,
                 correct_count INTEGER,
                 study_count INTEGER,
-                last_study_date TEXT,
+                last_study_date DATETIME, 
                 favorite INTEGER,
                 review_interval TEXT,
                 exposure_count INTEGER,
@@ -27,8 +28,8 @@ const initDb = () => {
                 last_attempt_status TEXT
             )`,
             [],
-            () => { console.log('Table created successfully'); },
-            error => { console.log('Error creating table', error); }
+            () => { console.log('새로운 테이블 생성 성공'); },
+            error => { console.log('테이블 생성 중 오류 발생', error); }
         );
     });
 };

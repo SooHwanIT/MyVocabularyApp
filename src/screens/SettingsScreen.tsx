@@ -8,7 +8,7 @@ const SettingsScreen = () => {
     // 버튼 클릭 시 전체 데이터를 가져와 Alert로 출력하는 함수
     const handleGetAllData = () => {
         getAllData((data) => {
-            Alert.alert("All Data", JSON.stringify(data, null, 2));
+            console.log("All Data", JSON.stringify(data, null, 2));
         });
     };
 
