@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import wordData from '../data/words.json'; // Word data file
 import { getUserWordData, updateOrAddUserWordData, initDb, getNextWord, getLastStudyTime } from '../services'; // SQLite DB API
 import { timeSinceLastStudy } from '../utils/timeSinceLastStudy'; // 유틸 파일에서 함수 임포트
-
-
 
 const TodayStudyScreen = () => {
     const [currentWord, setCurrentWord] = useState(null);
@@ -13,6 +12,8 @@ const TodayStudyScreen = () => {
     const [isCorrect, setIsCorrect] = useState(null);
     const [buttonText, setButtonText] = useState('제출');
     const [showSkip, setShowSkip] = useState(true);
+    const [isFavorite, setIsFavorite] = useState(false);
+    const [isMemorized, setIsMemorized] = useState(false);
     const inputRef = useRef(null);
 
     useEffect(() => {
@@ -25,6 +26,8 @@ const TodayStudyScreen = () => {
                 // 데이터베이스에서 다음 단어를 가져오고 현재 단어를 설정
                 getNextWord(1, (word) => {
                     setCurrentWord(word);
+                    setIsFavorite(word.favorite === 1);
+                    setIsMemorized(word.is_memorized === 1);
 
                     // 현재 단어의 마지막 학습 시간 가져오기
                     getLastStudyTime(word.id, (date) => {
@@ -67,6 +70,8 @@ const TodayStudyScreen = () => {
                 setIsCorrect(null);
                 setButtonText('제출');
                 setShowSkip(true);
+                setIsFavorite(nextWord.favorite === 1);
+                setIsMemorized(nextWord.is_memorized === 1);
 
                 // 새 단어의 마지막 학습 시간 가져오기
                 getLastStudyTime(nextWord.id, (date) => {
@@ -85,6 +90,22 @@ const TodayStudyScreen = () => {
         setShowSkip(false);
     };
 
+    const toggleFavorite = () => {
+        if (!currentWord) return;
+
+        const newFavoriteStatus = !isFavorite ? 1 : 0;
+        updateOrAddUserWordData(1, currentWord.id, null, { favorite: newFavoriteStatus });
+        setIsFavorite(!isFavorite);
+    };
+
+    const toggleMemorized = () => {
+        if (!currentWord) return;
+
+        const newMemorizedStatus = !isMemorized ? 1 : 0;
+        updateOrAddUserWordData(1, currentWord.id, null, { is_memorized: newMemorizedStatus });
+        setIsMemorized(!isMemorized);
+    };
+
     if (!currentWord) {
         return (
             <SafeAreaView style={styles.container}>
@@ -101,6 +122,24 @@ const TodayStudyScreen = () => {
                 <View style={styles.cardHeader}>
                     <Text style={styles.word}>{currentWord.word_korean}</Text>
                     <Text style={styles.lastStudy}>{lastStudyTimeText} 학습 </Text>
+
+                    {/* 즐겨찾기와 암기 완료 아이콘 */}
+                    <View style={styles.iconContainer}>
+                        <TouchableOpacity onPress={toggleFavorite}>
+                            <Icon
+                                name={isFavorite ? 'star' : 'star-border'}
+                                size={30}
+                                color={isFavorite ? '#FFD700' : '#000'}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={toggleMemorized} style={styles.memorizedIcon}>
+                            <Icon
+                                name={isMemorized ? 'check-circle' : 'check-circle-outline'}
+                                size={30}
+                                color={isMemorized ? '#4CAF50' : '#000'}
+                            />
+                        </TouchableOpacity>
+                    </View>
                 </View>
 
                 <TouchableOpacity onPress={() => inputRef.current.focus()} activeOpacity={1}>
@@ -187,6 +226,15 @@ const styles = StyleSheet.create({
         paddingBottom: 12,
         alignItems: 'flex-start',
         borderBottomWidth: 1,
+    },
+    iconContainer: {
+        flexDirection: 'row',
+        position: 'absolute',
+        right: 0,
+        top: 0,
+    },
+    memorizedIcon: {
+        marginLeft: 20,
     },
     word: {
         fontSize: 24,
